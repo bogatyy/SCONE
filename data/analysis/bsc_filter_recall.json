@@ -1,0 +1,697 @@
+{
+  "chain": "bsc",
+  "positive_total": 216,
+  "local_universe_total": 2216,
+  "results": [
+    {
+      "feature": "is_verified",
+      "kind": "single",
+      "positive_hits": 216,
+      "positive_total": 216,
+      "recall": 1.0,
+      "local_universe_hits": 2216,
+      "local_universe_total": 2216,
+      "local_pass_rate": 1.0
+    },
+    {
+      "feature": "bytecode_len>=500",
+      "kind": "single",
+      "positive_hits": 215,
+      "positive_total": 216,
+      "recall": 0.9953703703703703,
+      "local_universe_hits": 2023,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.9129061371841155
+    },
+    {
+      "feature": "opcode_diversity>=180",
+      "kind": "single",
+      "positive_hits": 211,
+      "positive_total": 216,
+      "recall": 0.9768518518518519,
+      "local_universe_hits": 2015,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.9092960288808665
+    },
+    {
+      "feature": "tx_count>=1",
+      "kind": "single",
+      "positive_hits": 209,
+      "positive_total": 216,
+      "recall": 0.9675925925925926,
+      "local_universe_hits": 1748,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.7888086642599278
+    },
+    {
+      "feature": "bytecode_len>=2000",
+      "kind": "single",
+      "positive_hits": 206,
+      "positive_total": 216,
+      "recall": 0.9537037037037037,
+      "local_universe_hits": 2011,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.9074909747292419
+    },
+    {
+      "feature": "tx_count>=5",
+      "kind": "single",
+      "positive_hits": 198,
+      "positive_total": 216,
+      "recall": 0.9166666666666666,
+      "local_universe_hits": 405,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.18276173285198555
+    },
+    {
+      "feature": "verified&tx>=5",
+      "kind": "intersection",
+      "positive_hits": 198,
+      "positive_total": 216,
+      "recall": 0.9166666666666666,
+      "local_universe_hits": 405,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.18276173285198555
+    },
+    {
+      "feature": "unique_callers>=2",
+      "kind": "single",
+      "positive_hits": 197,
+      "positive_total": 216,
+      "recall": 0.9120370370370371,
+      "local_universe_hits": 630,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.2842960288808664
+    },
+    {
+      "feature": "opcode_diversity>=200",
+      "kind": "single",
+      "positive_hits": 195,
+      "positive_total": 216,
+      "recall": 0.9027777777777778,
+      "local_universe_hits": 1997,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.901173285198556
+    },
+    {
+      "feature": "verified&bytecode>=2k&opcode_diversity>=200",
+      "kind": "intersection",
+      "positive_hits": 195,
+      "positive_total": 216,
+      "recall": 0.9027777777777778,
+      "local_universe_hits": 1997,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.901173285198556
+    },
+    {
+      "feature": "verified&tx>=5&callers>=2",
+      "kind": "intersection",
+      "positive_hits": 193,
+      "positive_total": 216,
+      "recall": 0.8935185185185185,
+      "local_universe_hits": 384,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.17328519855595667
+    },
+    {
+      "feature": "unique_callers>=5",
+      "kind": "single",
+      "positive_hits": 185,
+      "positive_total": 216,
+      "recall": 0.8564814814814815,
+      "local_universe_hits": 273,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.12319494584837545
+    },
+    {
+      "feature": "verified&callers>=5",
+      "kind": "intersection",
+      "positive_hits": 185,
+      "positive_total": 216,
+      "recall": 0.8564814814814815,
+      "local_universe_hits": 273,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.12319494584837545
+    },
+    {
+      "feature": "verified&tx>=5&callers>=5",
+      "kind": "intersection",
+      "positive_hits": 185,
+      "positive_total": 216,
+      "recall": 0.8564814814814815,
+      "local_universe_hits": 273,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.12319494584837545
+    },
+    {
+      "feature": "opcode_diversity>=220",
+      "kind": "single",
+      "positive_hits": 181,
+      "positive_total": 216,
+      "recall": 0.8379629629629629,
+      "local_universe_hits": 1980,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.8935018050541517
+    },
+    {
+      "feature": "verified&(traded|tvl>=1k)",
+      "kind": "intersection",
+      "positive_hits": 178,
+      "positive_total": 216,
+      "recall": 0.8240740740740741,
+      "local_universe_hits": 2178,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.9828519855595668
+    },
+    {
+      "feature": "verified&bytecode>=2k&tx>=5&callers>=5",
+      "kind": "intersection",
+      "positive_hits": 176,
+      "positive_total": 216,
+      "recall": 0.8148148148148148,
+      "local_universe_hits": 254,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.11462093862815885
+    },
+    {
+      "feature": "tx_count>=20",
+      "kind": "single",
+      "positive_hits": 175,
+      "positive_total": 216,
+      "recall": 0.8101851851851852,
+      "local_universe_hits": 273,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.12319494584837545
+    },
+    {
+      "feature": "bytecode_len>=5000",
+      "kind": "single",
+      "positive_hits": 171,
+      "positive_total": 216,
+      "recall": 0.7916666666666666,
+      "local_universe_hits": 1967,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.8876353790613718
+    },
+    {
+      "feature": "verified&tx>=5&(traded|tvl>=1k)",
+      "kind": "intersection",
+      "positive_hits": 167,
+      "positive_total": 216,
+      "recall": 0.7731481481481481,
+      "local_universe_hits": 374,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.16877256317689532
+    },
+    {
+      "feature": "opcode_diversity>=240",
+      "kind": "single",
+      "positive_hits": 164,
+      "positive_total": 216,
+      "recall": 0.7592592592592593,
+      "local_universe_hits": 1952,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.8808664259927798
+    },
+    {
+      "feature": "verified&callers>=5&(traded|tvl>=1k)",
+      "kind": "intersection",
+      "positive_hits": 162,
+      "positive_total": 216,
+      "recall": 0.75,
+      "local_universe_hits": 250,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.11281588447653429
+    },
+    {
+      "feature": "avg_gas>=50k",
+      "kind": "single",
+      "positive_hits": 161,
+      "positive_total": 216,
+      "recall": 0.7453703703703703,
+      "local_universe_hits": 417,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.18817689530685922
+    },
+    {
+      "feature": "unique_callers>=20",
+      "kind": "single",
+      "positive_hits": 159,
+      "positive_total": 216,
+      "recall": 0.7361111111111112,
+      "local_universe_hits": 216,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.09747292418772563
+    },
+    {
+      "feature": "tx_count>=100",
+      "kind": "single",
+      "positive_hits": 154,
+      "positive_total": 216,
+      "recall": 0.7129629629629629,
+      "local_universe_hits": 210,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.09476534296028881
+    },
+    {
+      "feature": "distinct_tokens>=1",
+      "kind": "single",
+      "positive_hits": 142,
+      "positive_total": 216,
+      "recall": 0.6574074074074074,
+      "local_universe_hits": 2142,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.9666064981949458
+    },
+    {
+      "feature": "token_transfers>=1",
+      "kind": "single",
+      "positive_hits": 142,
+      "positive_total": 216,
+      "recall": 0.6574074074074074,
+      "local_universe_hits": 2142,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.9666064981949458
+    },
+    {
+      "feature": "unique_callers>=100",
+      "kind": "single",
+      "positive_hits": 132,
+      "positive_total": 216,
+      "recall": 0.6111111111111112,
+      "local_universe_hits": 175,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.078971119133574
+    },
+    {
+      "feature": "bytecode_len>=10000",
+      "kind": "single",
+      "positive_hits": 124,
+      "positive_total": 216,
+      "recall": 0.5740740740740741,
+      "local_universe_hits": 1856,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.8375451263537906
+    },
+    {
+      "feature": "is_erc20",
+      "kind": "single",
+      "positive_hits": 121,
+      "positive_total": 216,
+      "recall": 0.5601851851851852,
+      "local_universe_hits": 1856,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.8375451263537906
+    },
+    {
+      "feature": "verified&erc20",
+      "kind": "intersection",
+      "positive_hits": 121,
+      "positive_total": 216,
+      "recall": 0.5601851851851852,
+      "local_universe_hits": 1856,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.8375451263537906
+    },
+    {
+      "feature": "total_transfer_in_usd>=1k",
+      "kind": "single",
+      "positive_hits": 121,
+      "positive_total": 216,
+      "recall": 0.5601851851851852,
+      "local_universe_hits": 2121,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.9571299638989169
+    },
+    {
+      "feature": "verified&tvl>=1k",
+      "kind": "intersection",
+      "positive_hits": 121,
+      "positive_total": 216,
+      "recall": 0.5601851851851852,
+      "local_universe_hits": 2121,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.9571299638989169
+    },
+    {
+      "feature": "avg_gas>=100k",
+      "kind": "single",
+      "positive_hits": 117,
+      "positive_total": 216,
+      "recall": 0.5416666666666666,
+      "local_universe_hits": 316,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.14259927797833935
+    },
+    {
+      "feature": "verified&tx>=5&tvl>=1k",
+      "kind": "intersection",
+      "positive_hits": 115,
+      "positive_total": 216,
+      "recall": 0.5324074074074074,
+      "local_universe_hits": 322,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.14530685920577618
+    },
+    {
+      "feature": "verified&callers>=5&tvl>=1k",
+      "kind": "intersection",
+      "positive_hits": 112,
+      "positive_total": 216,
+      "recall": 0.5185185185185185,
+      "local_universe_hits": 200,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.09025270758122744
+    },
+    {
+      "feature": "token_transfers>=10",
+      "kind": "single",
+      "positive_hits": 109,
+      "positive_total": 216,
+      "recall": 0.5046296296296297,
+      "local_universe_hits": 1782,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.8041516245487365
+    },
+    {
+      "feature": "verified&traded",
+      "kind": "intersection",
+      "positive_hits": 101,
+      "positive_total": 216,
+      "recall": 0.4675925925925926,
+      "local_universe_hits": 116,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.052346570397111915
+    },
+    {
+      "feature": "was_traded",
+      "kind": "single",
+      "positive_hits": 101,
+      "positive_total": 216,
+      "recall": 0.4675925925925926,
+      "local_universe_hits": 116,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.052346570397111915
+    },
+    {
+      "feature": "tx_count>=1000",
+      "kind": "single",
+      "positive_hits": 101,
+      "positive_total": 216,
+      "recall": 0.4675925925925926,
+      "local_universe_hits": 136,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.061371841155234655
+    },
+    {
+      "feature": "erc20&traded&bytecode>=2k",
+      "kind": "intersection",
+      "positive_hits": 98,
+      "positive_total": 216,
+      "recall": 0.4537037037037037,
+      "local_universe_hits": 112,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.05054151624548736
+    },
+    {
+      "feature": "erc20&traded&opcode_diversity>=200",
+      "kind": "intersection",
+      "positive_hits": 98,
+      "positive_total": 216,
+      "recall": 0.4537037037037037,
+      "local_universe_hits": 112,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.05054151624548736
+    },
+    {
+      "feature": "erc20&traded",
+      "kind": "intersection",
+      "positive_hits": 98,
+      "positive_total": 216,
+      "recall": 0.4537037037037037,
+      "local_universe_hits": 113,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.050992779783393505
+    },
+    {
+      "feature": "total_transfer_in_usd>=10k",
+      "kind": "single",
+      "positive_hits": 97,
+      "positive_total": 216,
+      "recall": 0.44907407407407407,
+      "local_universe_hits": 1192,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.5379061371841155
+    },
+    {
+      "feature": "historical_dex_factories>=1",
+      "kind": "single",
+      "positive_hits": 93,
+      "positive_total": 216,
+      "recall": 0.4305555555555556,
+      "local_universe_hits": 93,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.04196750902527076
+    },
+    {
+      "feature": "historical_dex_pools>=1",
+      "kind": "single",
+      "positive_hits": 93,
+      "positive_total": 216,
+      "recall": 0.4305555555555556,
+      "local_universe_hits": 93,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.04196750902527076
+    },
+    {
+      "feature": "erc20&traded&tx>=5",
+      "kind": "intersection",
+      "positive_hits": 93,
+      "positive_total": 216,
+      "recall": 0.4305555555555556,
+      "local_universe_hits": 107,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.04828519855595668
+    },
+    {
+      "feature": "erc20&traded&callers>=5",
+      "kind": "intersection",
+      "positive_hits": 91,
+      "positive_total": 216,
+      "recall": 0.4212962962962963,
+      "local_universe_hits": 105,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.047382671480144405
+    },
+    {
+      "feature": "erc20&historical_dex_liquidity>=1k",
+      "kind": "intersection",
+      "positive_hits": 86,
+      "positive_total": 216,
+      "recall": 0.39814814814814814,
+      "local_universe_hits": 86,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.0388086642599278
+    },
+    {
+      "feature": "historical_dex_liquidity>=1k",
+      "kind": "single",
+      "positive_hits": 86,
+      "positive_total": 216,
+      "recall": 0.39814814814814814,
+      "local_universe_hits": 86,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.0388086642599278
+    },
+    {
+      "feature": "traded&historical_dex_liquidity>=1k",
+      "kind": "intersection",
+      "positive_hits": 86,
+      "positive_total": 216,
+      "recall": 0.39814814814814814,
+      "local_universe_hits": 86,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.0388086642599278
+    },
+    {
+      "feature": "verified&erc20&traded&historical_dex_liquidity>=1k",
+      "kind": "intersection",
+      "positive_hits": 86,
+      "positive_total": 216,
+      "recall": 0.39814814814814814,
+      "local_universe_hits": 86,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.0388086642599278
+    },
+    {
+      "feature": "token_transfers>=100",
+      "kind": "single",
+      "positive_hits": 79,
+      "positive_total": 216,
+      "recall": 0.36574074074074076,
+      "local_universe_hits": 564,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.2545126353790614
+    },
+    {
+      "feature": "historical_dex_liquidity>=10k",
+      "kind": "single",
+      "positive_hits": 78,
+      "positive_total": 216,
+      "recall": 0.3611111111111111,
+      "local_universe_hits": 78,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.0351985559566787
+    },
+    {
+      "feature": "erc20&tvl>=1k",
+      "kind": "intersection",
+      "positive_hits": 61,
+      "positive_total": 216,
+      "recall": 0.2824074074074074,
+      "local_universe_hits": 1796,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.8104693140794224
+    },
+    {
+      "feature": "distinct_tokens>=2",
+      "kind": "single",
+      "positive_hits": 57,
+      "positive_total": 216,
+      "recall": 0.2638888888888889,
+      "local_universe_hits": 421,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.18998194945848376
+    },
+    {
+      "feature": "total_transfer_in_usd>=100k",
+      "kind": "single",
+      "positive_hits": 55,
+      "positive_total": 216,
+      "recall": 0.25462962962962965,
+      "local_universe_hits": 332,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.14981949458483754
+    },
+    {
+      "feature": "traded&tvl>=1k&callers>=5",
+      "kind": "intersection",
+      "positive_hits": 44,
+      "positive_total": 216,
+      "recall": 0.2037037037037037,
+      "local_universe_hits": 58,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.026173285198555957
+    },
+    {
+      "feature": "traded&tvl>=1k&tx>=5",
+      "kind": "intersection",
+      "positive_hits": 44,
+      "positive_total": 216,
+      "recall": 0.2037037037037037,
+      "local_universe_hits": 58,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.026173285198555957
+    },
+    {
+      "feature": "traded&tvl>=1k",
+      "kind": "intersection",
+      "positive_hits": 44,
+      "positive_total": 216,
+      "recall": 0.2037037037037037,
+      "local_universe_hits": 59,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.026624548736462094
+    },
+    {
+      "feature": "verified&traded&tvl>=1k",
+      "kind": "intersection",
+      "positive_hits": 44,
+      "positive_total": 216,
+      "recall": 0.2037037037037037,
+      "local_universe_hits": 59,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.026624548736462094
+    },
+    {
+      "feature": "historical_dex_liquidity>=100k",
+      "kind": "single",
+      "positive_hits": 43,
+      "positive_total": 216,
+      "recall": 0.19907407407407407,
+      "local_universe_hits": 43,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.0194043321299639
+    },
+    {
+      "feature": "erc20&traded&tvl>=1k&callers>=5",
+      "kind": "intersection",
+      "positive_hits": 42,
+      "positive_total": 216,
+      "recall": 0.19444444444444445,
+      "local_universe_hits": 56,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.02527075812274368
+    },
+    {
+      "feature": "erc20&traded&tvl>=1k&tx>=5",
+      "kind": "intersection",
+      "positive_hits": 42,
+      "positive_total": 216,
+      "recall": 0.19444444444444445,
+      "local_universe_hits": 56,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.02527075812274368
+    },
+    {
+      "feature": "erc20&traded&tvl>=1k",
+      "kind": "intersection",
+      "positive_hits": 42,
+      "positive_total": 216,
+      "recall": 0.19444444444444445,
+      "local_universe_hits": 57,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.02572202166064982
+    },
+    {
+      "feature": "verified&erc20&traded&tvl>=1k",
+      "kind": "intersection",
+      "positive_hits": 42,
+      "positive_total": 216,
+      "recall": 0.19444444444444445,
+      "local_universe_hits": 57,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.02572202166064982
+    },
+    {
+      "feature": "total_transfer_in_usd>=1m",
+      "kind": "single",
+      "positive_hits": 27,
+      "positive_total": 216,
+      "recall": 0.125,
+      "local_universe_hits": 105,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.047382671480144405
+    },
+    {
+      "feature": "historical_dex_pools>=2",
+      "kind": "single",
+      "positive_hits": 25,
+      "positive_total": 216,
+      "recall": 0.11574074074074074,
+      "local_universe_hits": 25,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.01128158844765343
+    },
+    {
+      "feature": "distinct_tokens>=5",
+      "kind": "single",
+      "positive_hits": 15,
+      "positive_total": 216,
+      "recall": 0.06944444444444445,
+      "local_universe_hits": 38,
+      "local_universe_total": 2216,
+      "local_pass_rate": 0.017148014440433214
+    }
+  ]
+}

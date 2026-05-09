@@ -1,0 +1,46 @@
+-- Ethereum classifier 2 count query.
+-- Exact count previously observed: 28,228
+-- Window: contracts deployed from 2020-01-01 up to 2026-04-01.
+--
+-- Classifier 2:
+--   verified
+--   bytecode_len >= 2000
+--   tx_count >= 5
+--   unique_callers >= 5
+
+WITH
+params AS (
+    SELECT DATE '2020-01-01' AS deploy_start, DATE '2026-04-01' AS deploy_end
+),
+deployed AS (
+    SELECT DISTINCT ct.address, length(ct.code) AS bytecode_len
+    FROM ethereum.creation_traces ct
+    CROSS JOIN params p
+    WHERE ct.block_time >= p.deploy_start
+      AND ct.block_time < p.deploy_end
+),
+verified AS (
+    SELECT DISTINCT d.address, d.bytecode_len
+    FROM deployed d
+    JOIN ethereum.contracts c
+      ON c.address = d.address
+),
+tx_stats AS (
+    SELECT
+        t."to" AS address,
+        COUNT(*) AS tx_count,
+        approx_distinct(t."from") AS unique_callers
+    FROM ethereum.transactions t
+    CROSS JOIN params p
+    WHERE t.block_time >= p.deploy_start
+      AND t.block_time < p.deploy_end
+      AND t."to" IS NOT NULL
+    GROUP BY 1
+)
+SELECT COUNT(DISTINCT v.address) AS candidate_contracts
+FROM verified v
+JOIN tx_stats tx
+  ON tx.address = v.address
+WHERE v.bytecode_len >= 2000
+  AND tx.tx_count >= 5
+  AND tx.unique_callers >= 5;
