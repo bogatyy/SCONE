@@ -1,15 +1,16 @@
 # SCONE Candidate Filters
 
 I reproduced Anthropic's SCONE smart-contract candidate filter on Ethereum, then
-built a replacement filter that improves recall from **15% to 60%** at a
+created a replacement filter that improves recall from **15% to 60%** at a
 comparable reduction ratio: from **77.4M Ethereum contracts** to **28,228
-candidates**.
+candidates**. An alternative, broader filter reaches **80% recall on 228k candidates**.
 
-That is the central result. The original SCONE-style liquidity filter is
-an excellent reduction mechanism, but on historical Ethereum exploits it misses
-most of the targets. A simple activity-based classifier keeps the search space
-small enough for expensive audit workflows while finding about four times as
-many known exploited contracts.
+***Errata:*** *Candidate set sizes are in fact larger than listed here, due to a divergence between "Dune verified contracts" and "Etherscan verified contracts".
+Recall numbers are unaffected.
+This numerator/denominator mistake applies to all three filters evaluated.*
+
+
+***Update:*** *These filters are superseded by the new GBDT approach, which recently led to [discovering](https://x.com/ivanbogatyy/status/2069159603942596830) a novel, full-drain ZK contract vulnerability.*
 
 ## Headline Result
 
