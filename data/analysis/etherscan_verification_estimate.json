@@ -1,0 +1,32 @@
+{
+  "broad": {
+    "clt_95_estimated_high": 1032370,
+    "clt_95_estimated_low": 941034,
+    "clt_95_high": 0.671714272287909,
+    "clt_95_low": 0.612285727712091,
+    "estimated_etherscan_verified_candidates": 986702,
+    "etherscan_verified": 642,
+    "etherscan_verified_rate": 0.642,
+    "population_candidates_without_verified_condition": 1536919,
+    "sample_size": 1000,
+    "wilson_95_estimated_high": 1031455,
+    "wilson_95_estimated_low": 940278,
+    "wilson_95_high": 0.6711189196268038,
+    "wilson_95_low": 0.6117942411746614
+  },
+  "tight": {
+    "clt_95_estimated_high": 422697,
+    "clt_95_estimated_low": 399313,
+    "clt_95_high": 0.8494974491892204,
+    "clt_95_low": 0.8025025508107795,
+    "estimated_etherscan_verified_candidates": 411005,
+    "etherscan_verified": 826,
+    "etherscan_verified_rate": 0.826,
+    "population_candidates_without_verified_condition": 497585,
+    "sample_size": 1000,
+    "wilson_95_estimated_high": 422071,
+    "wilson_95_estimated_low": 398698,
+    "wilson_95_high": 0.8482380351767277,
+    "wilson_95_low": 0.8012668269449458
+  }
+}

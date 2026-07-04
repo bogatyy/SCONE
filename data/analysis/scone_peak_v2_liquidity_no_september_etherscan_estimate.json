@@ -1,0 +1,17 @@
+{
+  "peak_v2_liquidity_1k_no_september": {
+    "clt_95_estimated_high": 392016,
+    "clt_95_estimated_low": 372733,
+    "clt_95_high": 0.8796343517952353,
+    "clt_95_low": 0.8363656482047647,
+    "estimated_etherscan_verified_candidates": 382375,
+    "etherscan_verified": 858,
+    "etherscan_verified_rate": 0.858,
+    "population_candidates_without_etherscan_condition": 445658,
+    "sample_size": 1000,
+    "wilson_95_estimated_high": 391406,
+    "wilson_95_estimated_low": 372122,
+    "wilson_95_high": 0.878266305428586,
+    "wilson_95_low": 0.8349936351835585
+  }
+}

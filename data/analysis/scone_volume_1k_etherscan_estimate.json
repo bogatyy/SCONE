@@ -1,0 +1,17 @@
+{
+  "dex_volume_1k": {
+    "clt_95_estimated_high": 336655,
+    "clt_95_estimated_low": 322225,
+    "clt_95_high": 0.9084701116175538,
+    "clt_95_low": 0.8695298883824463,
+    "estimated_etherscan_verified_candidates": 329440,
+    "etherscan_verified": 889,
+    "etherscan_verified_rate": 0.889,
+    "population_candidates_without_etherscan_condition": 370574,
+    "sample_size": 1000,
+    "wilson_95_estimated_high": 336111,
+    "wilson_95_estimated_low": 321666,
+    "wilson_95_high": 0.9070010938822441,
+    "wilson_95_low": 0.8680215790175441
+  }
+}

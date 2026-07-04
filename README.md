@@ -1,101 +1,83 @@
 # SCONE Candidate Filters
 
-I reproduced Anthropic's SCONE smart-contract candidate filter on Ethereum, then
-created a replacement filter that improves recall from **15% to 60%** at a
-comparable reduction ratio: from **77.4M Ethereum contracts** to **28,228
-candidates**. An alternative, broader filter reaches **80% recall on 228k candidates**.
+I’m building an efficient audit pipeline for discovering novel smart contract vulnerabilities.  
+The setup is inspired by Anthropic’s two-stage [SCONE pipeline](https://www.anthropic.com/research/smart-contracts): first filter for promising contracts, then run LLM-powered audits on the selected candidates.
 
-***Errata:*** *Candidate set sizes are in fact larger than listed here, due to a divergence between "Dune verified contracts" and "Etherscan verified contracts".
-Recall numbers are unaffected.
-This numerator/denominator mistake applies to all three filters evaluated.*
+My contribution improves the filtering stage.
+SCONE’s original filter catches about **15%** of past Ethereum exploits. The filter I’m proposing catches about **60%**, while producing roughly the same number of candidates.
+If past exploit recall is a decent proxy for future vulnerability recall, then swapping in this filter could make the same audit budget about **4x more effective**.
 
+Using this audit pipeline, I recently found a novel, full-drain ZK circuit [vulnerability](https://x.com/ivanbogatyy/status/2069159603942596830) in a contract that had previously held $2M.
 
-***Update:*** *These filters are superseded by the new GBDT approach, which recently led to [discovering](https://x.com/ivanbogatyy/status/2069159603942596830) a novel, full-drain ZK contract vulnerability.*
-
-## Headline Result
-
-- Baseline reproduced: Anthropic / SCONE-style token-liquidity filter.
-- Baseline recall: **26 / 174 = 14.9%** on known exploited Ethereum contracts.
-- New tight classifier recall: **103 / 174 = 59.2%**.
-- Candidate universe: **77,420,736** Ethereum contracts deployed between
-  2020-01-01 and 2026-04-01.
-- Tight classifier output: **28,228** candidates.
-- Broader high-recall variant: **136 / 174 = 78.2%** recall at **228,068**
-  candidates.
-
-Production Dune queries:
-
-- [60% recall at 28k candidates](https://dune.com/queries/6941487)
-- [80% recall at 228k candidates](https://dune.com/queries/6941488)
-
-The motivation comes from Anthropic's SCONE-bench work:
-[AI agents find $4.6M in blockchain smart contract exploits](https://red.anthropic.com/2025/smart-contracts/).
-SCONE-bench evaluates agents against real historical exploits and describes a
-prefiltering pipeline for shrinking a large deployed-contract universe into a
-small audit queue.
-
-## Comparison
-
-I evaluated candidate filters against 174 exploited Ethereum contracts derived
-from DeFiHackLabs / SCONE-bench and compared them to the full Ethereum deployed
-contract universe since 2020.
+## Headline Numbers
 
 | Filter | Predicate | Candidates | Recall |
 | --- | --- | ---: | ---: |
-| Anthropic / SCONE-style liquidity branch | verified, ERC-20, traded, historical DEX liquidity >= $1k | small liquidity-focused set | 26 / 174 = 14.9% |
-| Tight activity classifier | verified, bytecode length >= 2,000, tx count >= 5, unique callers >= 5 | 28,228 | 103 / 174 = 59.2% |
-| Broad activity classifier | verified, tx count >= 5 | 228,068 | 136 / 174 = 78.2% |
+| Original Anthropic SCONE filter | source code verified<br>ERC-20<br>traded on a DEX<br>DEX liquidity >= $1k | ~382,000 | 26 / 174 = 14.9% |
+| Suggested new filter | source code verified<br>tx count >= 5<br>bytecode length >= 2,000<br>unique callers >= 5 | ~411,000 | 103 / 174 = 59.2% |
+| Higher-recall alternative | source code verified<br>tx count >= 5 | ~987,000 | 136 / 174 = 78.2% |
 
-The tight classifier keeps roughly the same order of candidate-set reduction as
-the SCONE-style baseline while improving Ethereum exploit recall from about 15%
-to about 60%. The broader classifier expands the candidate set by about one
-order of magnitude and reaches about 80% recall.
+Candidate universe: Ethereum contracts deployed from `2020-01-01` up to
+`2026-04-01`.
 
-## Baseline
+All features except "source code verified" are calculated using Dune SQL.
 
-The Anthropic / SCONE-style prefilter is represented here as the
-token-liquidity branch:
+Etherscan verification status is not available on Dune, so I calculate it directly as the last filtering step (also, it is too expensive to API-request for each contract, so I do random sampling).
 
-- source verified,
-- ERC-20 shaped,
-- traded,
-- historical direct DEX liquidity >= $1,000.
+**Errata:** in the previous version of this repo, candidate set sizes were wrong due to a divergence between "Dune verified contracts" and "Etherscan verified contracts"; this is fixed now. Recall numbers were not affected.
 
-Measured against the Ethereum exploit set, this passes 26 of 174 known
-exploited contracts, or 14.9% recall. That is the baseline the activity
-classifiers improve on.
+Historical DEX liquidity >= $1k is calculated adding up all v2 and v3 liquidity.
 
-## Method
+## Benchmark Recall
 
-1. Start with the SCONE-bench / DeFiHackLabs historical exploit set.
-2. Extract vulnerable contract addresses and exploit blocks.
-3. Build features for exploited contracts and sampled non-exploited contracts:
-   verification status, ERC-20 shape, bytecode size, transaction count, unique
-   caller count, gas usage, token transfer activity, and trading/liquidity
-   indicators.
-4. Compare filters and filter intersections against the positive set.
-5. Port the strongest filters to Dune SQL to count the Ethereum candidate
-   universe since 2020.
+The original
+[`benchmark.csv`](https://github.com/safety-research/SCONE-bench/blob/main/benchmark.csv)
+has 177 Ethereum rows and 174 unique Ethereum target addresses. The
+unique-address denominator is used for the headline recall numbers.
 
-The core metric is recall on historical exploited Ethereum contracts at a given
-candidate-set size. The goal is the first stage of a defensive audit pipeline:
-avoid missing known-vulnerable patterns before sending candidates to slower
-manual or agentic analysis.
+| Stage | Passing contracts | Recall |
+| --- | ---: | ---: |
+| Ethereum mainnet positives | 174 | 100.0% |
+| Implements ERC-20 runtime core | 59 | 33.9% |
+| ERC-20 and Etherscan source verified | 59 | 33.9% |
+| ERC-20, verified, historical DEX liquidity >= $1k | 26 | 14.9% |
 
-## Numbers
+## Universe Reductions
 
-- Ethereum deployed contracts since 2020-01-01: **77,420,736**
-- Verified contracts: **1,938,152**
-- Verified contracts with tx count >= 5: **228,068**
-- Verified contracts with tx count >= 5 and unique callers >= 5: **72,217**
-- Verified contracts with bytecode length >= 2,000, tx count >= 5, and unique
-  callers >= 5: **28,228**
+SCONE-style per-stage reductions, plus a volume-based alternative:
 
-Local Ethereum recall:
+| Step | Liquidity branch | DEX-volume alternative |
+| --- | ---: | ---: |
+| Ethereum deployed contracts, `2020-01-01` to `2026-04-01` | 77,207,055 | 77,207,055 |
+| Deployed ERC-20s | 1,348,507 | 1,348,507 |
+| Market evidence | 480,845 direct major-quote v2 pair | 497,137 any DEX volume |
+| Active market/liquidity threshold | 466,090 any direct major-quote v2 Sync event | 370,574 DEX volume >= $1k |
+| Final pre-Etherscan predicate | 445,658 peak v2 direct major-quote liquidity >= $1k | 370,574 DEX volume >= $1k |
+| Estimated Etherscan-verified candidates | 382,375 | 329,440 |
 
-- verified and tx count >= 5: **136 / 174 = 78.2%**
-- verified, tx count >= 5, unique callers >= 5: **121 / 174 = 69.5%**
-- verified, bytecode length >= 2,000, tx count >= 5, unique callers >= 5:
-  **103 / 174 = 59.2%**
-- verified, ERC-20, traded, historical DEX liquidity >= $1k:
-  **26 / 174 = 14.9%**
+Activity classifiers:
+
+| Step | Count |
+| --- | ---: |
+| Tight activity classifier, pre-Etherscan | 497,585 |
+| Tight activity classifier, estimated Etherscan-verified | 411,005 |
+| Broad activity classifier, pre-Etherscan | 1,536,919 |
+| Broad activity classifier, estimated Etherscan-verified | 986,702 |
+
+
+## Artifacts
+
+SQL queries:
+
+- `sql/dune_eth_scone_v2_peak_liquidity_no_september_count_sample.sql`
+- `sql/dune_eth_scone_volume_unverified_count_sample.sql`
+- `sql/dune_eth_classifier_unverified_counts.sql`
+- `sql/dune_eth_classifier_unverified_samples.sql`
+
+Resulting Data:
+
+- `data/analysis/ethereum_true_liquidity.csv`
+- `data/analysis/ethereum_filter_recall.csv`
+- `data/analysis/scone_peak_v2_liquidity_no_september_etherscan_estimate.json`
+- `data/analysis/scone_volume_1k_etherscan_estimate.json`
+- `data/analysis/etherscan_verification_estimate.json`
